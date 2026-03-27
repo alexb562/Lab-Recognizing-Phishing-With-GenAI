@@ -10,24 +10,29 @@ The scope will include relevant logs, identifying the primary remote IP address,
 ## Findings
 ### Phishing Analysis
 - The first step was to leverage generative AI in order to quickly assess if typical phishing traits were present or not. The email is presented here: 
-```text
-Subject: Urgent Research Collaboration Opportunity - Exclusive Nuclear Insights!
-Dear Dr. Simson,
-We hope this message finds you well. Our esteemed organization, the International Nuclear Fusion Advancements Consortium (INFAC), has recently come across ground breaking research that aligns perfectly with your expertise. We believe your involvement is crucial for the success of this venture.
-Attached to this email, you will find a PDF document containing detailed information on the collaborative project. Your swift review and valuable insights are of utmost importance to us.
-Download the PDF now: www.infac.com/proposal.pdf
-Your commitment to nuclear research has garnered widespread recognition, and we are confident that your expertise will play a pivotal role in advancing our shared goals.
-Please respond at your earliest convenience to confirm your participation. We eagerly await your esteemed contribution to this unprecedented initiative.
-Best Regards,
-Dr. Smith
-Director of Collaborative Research
-International Nuclear Fusion Advancements Consortium (INFAC)
+> **Subject: Urgent Research Collaboration Opportunity - Exclusive Nuclear Insights!**
+>
+> Dear Dr. Simson,
+>
+> We hope this message finds you well. Our esteemed organization, the International Nuclear Fusion Advancements Consortium (INFAC), has recently come across ground breaking research that aligns perfectly with your expertise. We believe your involvement is crucial for the success of this venture.
+>
+> Attached to this email, you will find a PDF document containing detailed information on the collaborative project. Your swift review and valuable insights are of utmost importance to us.
+>
+> Download the PDF now: www.infac.com/proposal.pdf
+>
+> Your commitment to nuclear research has garnered widespread recognition, and we are confident that your expertise will play a pivotal role in advancing our shared goals.
+>
+> Please respond at your earliest convenience to confirm your participation. We eagerly await your esteemed contribution to this unprecedented initiative.
+>
+> Best Regards,
+> Dr. Smith
+> Director of Collaborative Research
+> International Nuclear Fusion Advancements Consortium (INFAC)
 
-```
 - The recipient, Dr. Simson, had never heard of this organization although he is deeply involved in collaboration and research worldwide. This sounded suspicious so he contacted the security team to analyze. In order to leverage generative AI’s context expertise and save time, the following prompt was used by the security team:
 > I am a security analyst working for a nuclear fusion company. The team recently reported to us that they received suspicious emails, and upon further investigation the team found a background program running as well as suspicious log activities across the organization.
 >
-> Here is the email: "<email above inserted here>"
+> Here is the email: 'insert email here'
 >
 > I need you to take on the role of an expert in phishing and determine whether and/or how this email exhibits signs of a phishing attempt.
 - chatGPT 4.0 mini then responded:
@@ -62,7 +67,7 @@ International Nuclear Fusion Advancements Consortium (INFAC)
 > Based on these observations, the email exhibits several characteristics commonly associated with phishing attempts. It is advisable to treat this email with caution, avoid clicking any links or downloading attachments, and report it to your organization's IT or security team for further investigation. Additionally, verifying the legitimacy of the sender and the organization they claim to represent is crucial.
 
 
-- This is in line with personal analysis from the security team, which specifically highlighted lack of specific details in the project (to invite curiosity to click on the PDF) as well as driving a sense of urgency in the header. 
+This is in line with personal analysis from the security team, which specifically highlighted lack of specific details in the project (to invite curiosity to click on the PDF) as well as driving a sense of urgency in the header. 
 
 ## Malware Analysis
 - The team was able to isolate the link to download the PDF and extract the file in a virtual sandboxed environment Using ChatGPT, the team used a crafted prompt to identify any malicious traits of the text. The code is as following:
@@ -124,12 +129,12 @@ if __name__ == "__main__":
 >
 > In a security context, it is crucial to ensure that such scripts are used ethically and with the consent of the data owners, especially when dealing with sensitive information.
 
-- It is always important to use critical thinking when using generative AI. It should not be taken completely at face value, but rather as an important tool to produce a quick overview that security professionals can review and draw their own conclusions from. Upon reviewing the output, the team is in agreement. Given the context of a nuclear program which has wide-ranging geopolitical implications, it makes sense that potential state/non-state actors may want access to very sensitive information. In this case, the malicious actor can gain access to sensitive files and exfiltrate them to the mentioned important.doc file. 
+It is always important to use critical thinking when using generative AI. It should not be taken completely at face value, but rather as an important tool to produce a quick overview that security professionals can review and draw their own conclusions from. Upon reviewing the output, the team is in agreement. Given the context of a nuclear program which has wide-ranging geopolitical implications, it makes sense that potential state/non-state actors may want access to very sensitive information. In this case, the malicious actor can gain access to sensitive files and exfiltrate them to the mentioned important.doc file. 
 
 ## Network log analysis
 The team then moved to analyze the network log that identified suspicious activity across several computers. Generative AI was used to quickly analyze the log, pinpoint the remote IP address, and determine the relevant port numbers.
 - The prompt used:
-> Building on this situation, a log file detailing suspicious activity across several computers was found. Analyze the log, determine the remote IP where the maximum outbound traffic originated and determine the relevant port. <log here>
+> Building on this situation, a log file detailing suspicious activity across several computers was found. Analyze the log, determine the remote IP where the maximum outbound traffic originated and determine the relevant port. 'log here'
 - The output:
 > **Summary of Outbound Connections**
 >
